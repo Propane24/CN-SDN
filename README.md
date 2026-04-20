@@ -1,59 +1,40 @@
-# SDN-Based Firewall using Mininet and Ryu
-
-## 1. Problem Statement
+SDN-Based Firewall using Mininet and Ryu
+1. Problem Statement
 
 The objective of this project is to design and implement a Software Defined Networking (SDN) based firewall using Mininet and a Ryu controller. The firewall should be capable of controlling network traffic between hosts by applying rule-based filtering.
 
 The controller must:
-- Handle packet_in events
-- Apply match + action flow rules
-- Block or allow traffic based on predefined conditions
 
----
-
-## 2. Objective
-
-- Implement controller-switch interaction using OpenFlow
-- Design and install flow rules dynamically
-- Demonstrate firewall behavior (allowed vs blocked traffic)
-- Observe network behavior using Mininet tools
-
----
-
-## 3. Tools & Technologies Used
-
-- Mininet (Network Emulator)
-- Ryu Controller (SDN Controller)
-- Open vSwitch
-- Python (for controller logic)
-
----
-
-## 4. Network Topology
+Handle packet_in events
+Apply match + action flow rules
+Block or allow traffic based on predefined conditions
+2. Objective
+Implement controller-switch interaction using OpenFlow
+Design and install flow rules dynamically
+Demonstrate firewall behavior (allowed vs blocked traffic)
+Observe network behavior using Mininet tools
+3. Tools & Technologies Used
+Mininet (Network Emulator)
+Ryu Controller (SDN Controller)
+Open vSwitch
+Python (for controller logic)
+4. Network Topology
 
 A simple topology is used:
-
 
 h1 ---|
 h2 ---|--- s1 (switch)
 h3 ---|
-
-
-- 1 switch (s1)
-- 3 hosts (h1, h2, h3)
+1 switch (s1)
+3 hosts (h1, h2, h3)
 
 IP Addresses:
-- h1 → 10.0.0.1
-- h2 → 10.0.0.2
-- h3 → 10.0.0.3
 
----
-
-## 5. Setup Instructions
-
-### Step 1: Install Dependencies
-
-```bash
+h1 → 10.0.0.1
+h2 → 10.0.0.2
+h3 → 10.0.0.3
+5. Setup Instructions
+Step 1: Install Dependencies
 sudo apt update
 sudo apt install mininet openvswitch-switch python3-pip -y
 pip3 install ryu
@@ -71,15 +52,21 @@ The controller implements rule-based filtering:
 
 BLOCK rule:
 Traffic from 10.0.0.1 (h1) to 10.0.0.3 (h3) is dropped
+
 ALLOW:
 All other traffic is allowed
+
 Implementation Details:
+
 Packet inspection using IPv4 headers
 Matching based on source and destination IP
 Drop rule implemented by ignoring packet (no action)
 Allowed traffic is forwarded (flooded)
 8. Test Scenarios
 Test Case 1: Allowed Traffic
+
+Command:
+
 h1 ping h2
 
 Expected Result:
@@ -87,6 +74,9 @@ Expected Result:
 Ping successful
 0% packet loss
 Test Case 2: Blocked Traffic
+
+Command:
+
 h1 ping h3
 
 Expected Result:
@@ -94,6 +84,9 @@ Expected Result:
 Ping fails
 Packets dropped
 Test Case 3: Reverse Traffic
+
+Command:
+
 h3 ping h1
 
 Expected Result:
@@ -117,12 +110,9 @@ Match conditions
 Actions
 Controller Logs
 
-Controller prints logs such as:
+Example output:
 
 BLOCKED: 10.0.0.1 -> 10.0.0.3
-
-This confirms firewall rule execution.
-
 10. Performance Observation
 Latency Test
 h1 ping h2
@@ -133,12 +123,9 @@ Round trip time (RTT)
 Throughput Test (optional)
 iperf
 
-Used to analyze bandwidth between hosts.
+Used to analyze bandwidth between hosts
 
 11. Cleanup
-
-Before rerunning Mininet:
-
 sudo mn -c
 12. Features Implemented
 Controller-based firewall
