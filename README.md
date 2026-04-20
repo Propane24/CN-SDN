@@ -121,6 +121,8 @@ Expected Result:
 - Ping successful  
 - 0% packet loss  
 
+!(accepted_ping)[screenshots/accepted_ping.jpeg]
+
 ---
 
 ### Test Case 2: Blocked Traffic
