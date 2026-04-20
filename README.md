@@ -67,30 +67,30 @@ IP Addresses:
 ## 5. Setup Instructions
 
 ### Step 1: Install Dependencies
-
+```
 sudo apt update  
 sudo apt install mininet openvswitch-switch git python3 -y  
-
+```
 ### Step 2: Clone POX
-
+```
 git clone https://github.com/noxrepo/pox  
 cd pox  
-
+```
 ---
 
 ## 6. Execution Steps
 
 ### Terminal 1: Start POX Firewall Controller
-
+```
 cd ~/pox  
 ./pox.py firewall  
-
+```
 ---
 
 ### Terminal 2: Run Mininet
-
+```
 sudo mn --topo single,3 --controller remote  
-
+```
 ---
 
 ## 7. Firewall Logic
@@ -126,9 +126,9 @@ Expected Result:
 ---
 
 ### Test Case 2: Blocked Traffic
-
+```
 h1 ping h3  
-
+```
 Expected Result:
 - Ping fails  
 - Packets dropped 
@@ -138,9 +138,9 @@ Expected Result:
 ---
 
 ### Test Case 3: Reverse Traffic
-
+```
 h3 ping h1  
-
+```
 Expected Result:
 - May succeed (depending on rule direction)  
 
@@ -163,9 +163,9 @@ Expected:
 ---
 
 ### Flow Table Inspection
-
+```
 sudo ovs-ofctl dump-flows s1  
-
+```
 Observe:
 - Installed flow rules  
 - Match conditions  
@@ -186,24 +186,24 @@ BLOCKED: 10.0.0.1 -> 10.0.0.3
 ## 10. Performance Observation
 
 ### Latency Test
-
+```
 h1 ping h2  
-
+```
 Measure:
 - Round trip time (RTT)  
 
 ---
 
 ### Throughput Test (Optional)
-
+```
 iperf  
-
+```
 ---
 
 ## 11. Cleanup
-
+```
 sudo mn -c  
-
+```
 ---
 
 ## 12. Features Implemented
