@@ -1,6 +1,6 @@
 # SDN-Based Firewall using Mininet and POX
 
-##File Structure
+File Structure
 ```
 sdn-firewall-mininet/
 │
