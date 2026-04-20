@@ -10,7 +10,21 @@ The controller must:
 - Block or allow traffic based on predefined conditions  
 
 ---
-
+##File Structure
+```
+sdn-firewall-mininet/
+│
+├── firewall.py
+├── README.md
+│
+├── screenshots/
+    ├── topology.png
+    ├── controller.png
+    ├── allowed_ping.png
+    ├── blocked_ping.png
+    ├── flow_table.png
+    └── pingall.png
+```
 ## 2. Objective
 
 - Implement controller-switch interaction using OpenFlow  
