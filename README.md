@@ -50,28 +50,28 @@ IP Addresses:
 ## 5. Setup Instructions
 
 ### Step 1: Install Dependencies
-
+```
 sudo apt update  
 sudo apt install mininet openvswitch-switch python3-pip -y  
 pip3 install ryu  
-
+```
 ### Step 2: Clone Repository
-
+```
 git clone <your-repo-link>  
 cd sdn-firewall-mininet  
-
+```
 ---
 
 ## 6. Execution Steps
 
 ### Terminal 1: Start Ryu Controller
-
+```
 ryu-manager firewall.py  
-
+```
 ### Terminal 2: Run Mininet
-
+```
 sudo mn --topo single,3 --controller remote  
-
+```
 ---
 
 ## 7. Firewall Logic
