@@ -121,7 +121,7 @@ Expected Result:
 - Ping successful  
 - 0% packet loss  
 
-!(accepted_ping)[screenshots/accepted_ping.jpeg]
+![accepted_ping](screenshots/accepted_ping.jpeg)
 
 ---
 
@@ -131,7 +131,9 @@ h1 ping h3
 
 Expected Result:
 - Ping fails  
-- Packets dropped  
+- Packets dropped 
+
+![blocked_ping](screenshots/blocked_ping.jpeg)
 
 ---
 
@@ -141,6 +143,8 @@ h3 ping h1
 
 Expected Result:
 - May succeed (depending on rule direction)  
+
+![blocked_ping](screenshots/blocked_ping.jpeg)
 
 ---
 
@@ -154,6 +158,8 @@ Expected:
 - h1 ↔ h2 → success  
 - h1 ↔ h3 → failure  
 
+![pingall](screenshots/pingall.jpeg)
+
 ---
 
 ### Flow Table Inspection
@@ -164,6 +170,8 @@ Observe:
 - Installed flow rules  
 - Match conditions  
 - Actions  
+
+![flowtable](screenshots/flowtable.jpeg)
 
 ---
 
