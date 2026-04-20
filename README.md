@@ -1,15 +1,5 @@
-# SDN-Based Firewall using Mininet and Ryu
+# SDN-Based Firewall using Mininet and POX
 
-## 1. Problem Statement
-
-The objective of this project is to design and implement a Software Defined Networking (SDN) based firewall using Mininet and a Ryu controller. The firewall controls network traffic between hosts using rule-based filtering.
-
-The controller must:
-- Handle packet_in events  
-- Apply match + action flow rules  
-- Block or allow traffic based on predefined conditions  
-
----
 ##File Structure
 ```
 sdn-firewall-mininet/
@@ -25,6 +15,19 @@ sdn-firewall-mininet/
     ├── flow_table.png
     └── pingall.png
 ```
+
+
+## 1. Problem Statement
+
+The objective of this project is to design and implement a Software Defined Networking (SDN) based firewall using Mininet and a POX controller. The firewall should be capable of controlling network traffic between hosts by applying rule-based filtering.
+
+The controller must:
+- Handle PacketIn events  
+- Apply match + action flow rules  
+- Block or allow traffic based on predefined conditions  
+
+---
+
 ## 2. Objective
 
 - Implement controller-switch interaction using OpenFlow  
@@ -37,7 +40,7 @@ sdn-firewall-mininet/
 ## 3. Tools & Technologies Used
 
 - Mininet (Network Emulator)  
-- Ryu Controller (SDN Controller)  
+- POX Controller (SDN Controller)  
 - Open vSwitch  
 - Python  
 
@@ -64,28 +67,30 @@ IP Addresses:
 ## 5. Setup Instructions
 
 ### Step 1: Install Dependencies
-```
+
 sudo apt update  
-sudo apt install mininet openvswitch-switch python3-pip -y  
-pip3 install ryu  
-```
-### Step 2: Clone Repository
-```
-git clone <your-repo-link>  
-cd sdn-firewall-mininet  
-```
+sudo apt install mininet openvswitch-switch git python3 -y  
+
+### Step 2: Clone POX
+
+git clone https://github.com/noxrepo/pox  
+cd pox  
+
 ---
 
 ## 6. Execution Steps
 
-### Terminal 1: Start Ryu Controller
-```
-ryu-manager firewall.py  
-```
+### Terminal 1: Start POX Firewall Controller
+
+cd ~/pox  
+./pox.py firewall  
+
+---
+
 ### Terminal 2: Run Mininet
-```
+
 sudo mn --topo single,3 --controller remote  
-```
+
 ---
 
 ## 7. Firewall Logic
@@ -101,8 +106,8 @@ All other traffic is allowed
 ### Implementation Details
 - Packet inspection using IPv4 headers  
 - Matching based on source and destination IP  
-- Drop rule implemented by ignoring packet (no action)  
-- Allowed traffic is forwarded (flooded)  
+- Drop rule implemented using flow rules (no action)  
+- Allowed traffic is forwarded using flooding  
 
 ---
 
@@ -116,6 +121,8 @@ Expected Result:
 - Ping successful  
 - 0% packet loss  
 
+---
+
 ### Test Case 2: Blocked Traffic
 
 h1 ping h3  
@@ -123,6 +130,8 @@ h1 ping h3
 Expected Result:
 - Ping fails  
 - Packets dropped  
+
+---
 
 ### Test Case 3: Reverse Traffic
 
@@ -143,6 +152,8 @@ Expected:
 - h1 ↔ h2 → success  
 - h1 ↔ h3 → failure  
 
+---
+
 ### Flow Table Inspection
 
 sudo ovs-ofctl dump-flows s1  
@@ -152,7 +163,11 @@ Observe:
 - Match conditions  
 - Actions  
 
+---
+
 ### Controller Logs
+
+Example output:
 
 BLOCKED: 10.0.0.1 -> 10.0.0.3  
 
@@ -166,6 +181,8 @@ h1 ping h2
 
 Measure:
 - Round trip time (RTT)  
+
+---
 
 ### Throughput Test (Optional)
 
@@ -201,7 +218,7 @@ sudo mn -c
 
 ## 14. Conclusion
 
-This project demonstrates how SDN enables centralized control of network traffic using a controller. By implementing a firewall at the controller level, dynamic and flexible traffic filtering is achieved using OpenFlow rules.  
+This project demonstrates how SDN enables centralized control of network traffic using a controller. By implementing a firewall at the controller level, dynamic and flexible traffic filtering is achieved using OpenFlow rules.
 
 ---
 
@@ -209,13 +226,13 @@ This project demonstrates how SDN enables centralized control of network traffic
 
 - https://mininet.org/overview/  
 - https://mininet.org/walkthrough/  
-- https://github.com/mininet/mininet  
-- Ryu Documentation  
+- https://github.com/noxrepo/pox  
 
 ---
 
 ## 16. Author
 
-Name: Pravith Mohandas 
+Name: Pravith Mohandas
 Course: Computer Networks  
-Project: SDN Based Firewall 
+Project: SDN Firewall using Mininet and POX  
+
